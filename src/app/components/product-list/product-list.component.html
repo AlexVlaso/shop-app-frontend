@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="product-group-item" *ngFor="let product of productList">
+    <a href="#">
+      <img src="{{ product.imageUrl }}" alt="{{ product.name }}" />
+      <p>{{ product.name }}</p>
+    </a>
+    <p class="price">
+      {{ product.price | currency : "USD" : "symbol" : "1.0-0" }}
+    </p>
+    <button class="btn btn-success">Add to cart</button>
+  </div>
+</div>

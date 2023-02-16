@@ -1,1 +1,86 @@
-/* You can add global styles to this file, and also import other style files */
+a {
+  color: aliceblue;
+  text-decoration: none;
+}
+a:hover {
+  color: orange;
+}
+.logo {
+  border-radius: 15px;
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+}
+.nav-icon {
+  font-size: 25px;
+  margin-right: 10px;
+}
+.navbar-shadow {
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+}
+.main-container {
+  display: flex;
+}
+.sidebar {
+  height: 500px;
+  width: 300px;
+  margin-top: 20px;
+  margin-left: 5px;
+  margin-bottom: 100px;
+  border-radius: 20px;
+  background-color: rgb(34, 37, 41);
+  color: aliceblue;
+  padding-top: 20px;
+  padding-left: 20px;
+}
+.category-group {
+  list-style-type: none;
+}
+.category-group-item {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.page-wrapper {
+  overflow: hidden;
+  background-color: rgb(229, 222, 206);
+}
+.product-group {
+  /* border: 1px solid #000; */
+  min-height: 1000px;
+  margin-left: 30px;
+  margin-top: 30px;
+  width: 75%;
+}
+.product-group a {
+  color: black;
+}
+.product-group-item {
+  height: 400px;
+  width: 300px;
+  border-radius: 20px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+  font-size: 20px;
+  text-align: center;
+  margin-top: 20px;
+  margin-left: 40px;
+  margin-bottom: 20px;
+}
+.product-group-item img {
+  height: 47%;
+  width: 60%;
+  margin-top: 10%;
+}
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.price {
+  color: rgb(55, 129, 55);
+}
+footer {
+  margin-bottom: 0, auto;
+  background-color: rgb(34, 37, 41);
+  height: 130px;
+}
