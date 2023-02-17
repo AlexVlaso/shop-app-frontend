@@ -55,26 +55,40 @@
           <a href="#"> <i class="bx bxl-apple"></i> Apple </a>
         </li>
         <li class="category-group-item">
-          <a href="#"> <i class="bx bx-mobile"></i> Phones </a>
+          <a routerLink="product/phones">
+            <i class="bx bx-mobile"></i> Phones
+          </a>
         </li>
         <li class="category-group-item">
-          <a href="#"><i class="bx bx-laptop"></i> Laptops </a>
+          <a routerLink="product/laptops"
+            ><i class="bx bx-laptop"></i> Laptops
+          </a>
         </li>
         <li class="category-group-item">
-          <a href="#"><i class="bx bx-desktop"></i> Computers</a>
+          <a routerLink="product/computers"
+            ><i class="bx bx-desktop"></i> Computers</a
+          >
         </li>
         <li class="category-group-item">
-          <a href="#"><i class="bx bx-headphone"></i> Headphones</a>
+          <a routerLink="product/headphones"
+            ><i class="bx bx-headphone"></i> Headphones</a
+          >
         </li>
         <li class="category-group-item">
-          <a href="#"><i class="bx bxs-watch-alt"></i> Watches</a>
+          <a routerLink="product/watches"
+            ><i class="bx bxs-watch-alt"></i> Watches</a
+          >
         </li>
         <li class="category-group-item">
-          <a href="#"><i class="bx bx-camera"></i> Cameras</a>
+          <a routerLink="product/cameras"
+            ><i class="bx bx-camera"></i> Cameras</a
+          >
         </li>
       </ul>
     </div>
-    <div class="product-group"><app-product-list></app-product-list></div>
+    <div class="product-group">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>
 <footer>
