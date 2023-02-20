@@ -37,47 +37,7 @@
   </header>
 
   <div class="main-container">
-    <div class="sidebar navbar-shadow">
-      <h4><i class="bx bxs-category"></i> Category</h4>
-      <hr />
-      <ul class="category-group">
-        <li class="category-group-item">
-          <a routerLink="search/Apple" routerLinkActive="active-link">
-            <i class="bx bxl-apple"></i> Apple
-          </a>
-        </li>
-        <li class="category-group-item">
-          <a routerLink="product/phones" routerLinkActive="active-link">
-            <i class="bx bx-mobile"></i> Phones
-          </a>
-        </li>
-        <li class="category-group-item">
-          <a routerLink="product/laptops" routerLinkActive="active-link"
-            ><i class="bx bx-laptop"></i> Laptops
-          </a>
-        </li>
-        <li class="category-group-item">
-          <a routerLink="product/computers" routerLinkActive="active-link"
-            ><i class="bx bx-desktop"></i> Computers</a
-          >
-        </li>
-        <li class="category-group-item">
-          <a routerLink="product/headphones" routerLinkActive="active-link"
-            ><i class="bx bx-headphone"></i> Headphones</a
-          >
-        </li>
-        <li class="category-group-item">
-          <a routerLink="product/watches" routerLinkActive="active-link"
-            ><i class="bx bxs-watch-alt"></i> Watches</a
-          >
-        </li>
-        <li class="category-group-item">
-          <a routerLink="product/cameras" routerLinkActive="active-link"
-            ><i class="bx bx-camera"></i> Cameras</a
-          >
-        </li>
-      </ul>
-    </div>
+    <app-category></app-category>
     <div class="product-group">
       <router-outlet></router-outlet>
     </div>
@@ -93,9 +53,6 @@
     </li>
     <li class="nav-item">
       <a href="#" class="nav-link px-2 text-muted">Pricing</a>
-    </li>
-    <li class="nav-item">
-      <a href="#" class="nav-link px-2 text-muted">FAQs</a>
     </li>
     <li class="nav-item">
       <a href="#" class="nav-link px-2 text-muted">About</a>
