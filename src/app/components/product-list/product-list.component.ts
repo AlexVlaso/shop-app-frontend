@@ -21,14 +21,24 @@ export class ProductListComponent implements OnInit {
     });
   }
   getListOfProduct() {
-    const isCategoryMode: boolean =
-      this.router.snapshot.paramMap.has('category');
-    if (isCategoryMode) {
-      const category = this.router.snapshot.paramMap.get('category')!;
-      this.getProductByCategory(category);
+    const keyword = this.router.snapshot.paramMap.get('keyword');
+    if (keyword) {
+      this.getProductByKeyword(keyword);
     } else {
-      this.getAllProducts();
+      const isCategoryMode: boolean =
+        this.router.snapshot.paramMap.has('category');
+      if (isCategoryMode) {
+        const category = this.router.snapshot.paramMap.get('category')!;
+        this.getProductByCategory(category);
+      } else {
+        this.getAllProducts();
+      }
     }
+  }
+  getProductByKeyword(keyword: string) {
+    this.productService.getProductsByKeyword(keyword).subscribe((data) => {
+      this.productList = data._embedded.products;
+    });
   }
   getProductByCategory(category: string) {
     this.productService.getProductsByCategory(category).subscribe((data) => {

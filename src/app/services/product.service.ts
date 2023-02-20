@@ -16,6 +16,10 @@ export class ProductService {
     const searchingUrl = `${this.basicUrl}/search/findByCategoryName?category=${category}`;
     return this.httpClient.get<ProductListResponse>(searchingUrl);
   }
+  getProductsByKeyword(keyword: string): Observable<ProductListResponse> {
+    const searchingUrl = `${this.basicUrl}/search/findByNameContaining?name=${keyword}`;
+    return this.httpClient.get<ProductListResponse>(searchingUrl);
+  }
 }
 interface ProductListResponse {
   _embedded: {
