@@ -14,5 +14,7 @@
       (keyup.enter)="onSearch(searchInput.value)"
     />
   </form>
-  <button class="btn-search"><i class="bx bx-search"></i></button>
+  <button class="btn-search" (click)="onSearch(searchInput.value)">
+    <i class="bx bx-search"></i>
+  </button>
 </div>
