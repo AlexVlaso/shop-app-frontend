@@ -10,6 +10,9 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class ProductListComponent implements OnInit {
   productList: Product[] = [];
+  count = 9;
+  page = 1;
+  currentCategory = '';
   constructor(
     private productService: ProductService,
     private router: ActivatedRoute
@@ -41,6 +44,10 @@ export class ProductListComponent implements OnInit {
     });
   }
   getProductByCategory(category: string) {
+    if (this.currentCategory !== category) {
+      this.currentCategory = category;
+      this.page = 1;
+    }
     this.productService.getProductsByCategory(category).subscribe((data) => {
       this.productList = data._embedded.products;
     });

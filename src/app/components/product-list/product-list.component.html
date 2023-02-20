@@ -1,5 +1,11 @@
 <div class="container">
-  <div class="product-group-item" *ngFor="let product of productList">
+  <div
+    class="product-group-item"
+    *ngFor="
+      let product of productList
+        | paginate : { itemsPerPage: count, currentPage: page }
+    "
+  >
     <a href="#">
       <img src="{{ product.imageUrl }}" alt="{{ product.name }}" />
       <p>{{ product.name }}</p>
@@ -9,4 +15,7 @@
     </p>
     <button class="btn btn-success">Add to cart</button>
   </div>
+</div>
+<div class="text-right">
+  <pagination-controls (pageChange)="page = $event"></pagination-controls>
 </div>
