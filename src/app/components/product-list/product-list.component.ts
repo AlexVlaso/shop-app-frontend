@@ -10,8 +10,10 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class ProductListComponent implements OnInit {
   productList: Product[] = [];
-  count = 9;
-  page = 1;
+  size = 9;
+  currentPage = 1;
+  totalPages = 1;
+  totalElements = 0;
   currentCategory = '';
   constructor(
     private productService: ProductService,
@@ -28,13 +30,13 @@ export class ProductListComponent implements OnInit {
     if (keyword) {
       this.getProductByKeyword(keyword);
     } else {
-      this.getProductByCategory;
+      this.getProductByCategory();
     }
   }
   getProductByKeyword(keyword: string) {
-    this.productService.getProductsByKeyword(keyword).subscribe((data) => {
-      this.productList = data._embedded.products;
-    });
+    this.productService
+      .getProductsByKeyword(keyword, this.size, this.currentPage - 1)
+      .subscribe(this.processData());
   }
   getProductByCategory() {
     const isCategoryMode: boolean =
@@ -43,18 +45,27 @@ export class ProductListComponent implements OnInit {
       const category = this.router.snapshot.paramMap.get('category')!;
       if (this.currentCategory !== category) {
         this.currentCategory = category;
-        this.page = 1;
+        this.currentPage = 1;
       }
-      this.productService.getProductsByCategory(category).subscribe((data) => {
-        this.productList = data._embedded.products;
-      });
+      this.productService
+        .getProductsByCategory(category, this.size, this.currentPage - 1)
+        .subscribe(this.processData());
     } else {
       this.getAllProducts();
     }
   }
   getAllProducts() {
-    this.productService.getAllProducts().subscribe((data) => {
+    this.productService
+      .getAllProducts(this.size, this.currentPage - 1)
+      .subscribe(this.processData());
+  }
+  processData() {
+    return (data: any) => {
       this.productList = data._embedded.products;
-    });
+      this.size = data.page.size;
+      this.currentPage = data.page.number + 1;
+      this.totalPages = data.page.totalPages;
+      this.totalElements = data.page.totalElements;
+    };
   }
 }
