@@ -5,6 +5,12 @@ a {
 a:hover {
   color: orange;
 }
+ngb-pagination .page-item.active .page-link {
+  z-index: 3;
+  color: black;
+  background-color: rgb(243, 181, 24);
+  border-color: #fff;
+}
 .logo {
   border-radius: 15px;
   width: 50px;
@@ -103,6 +109,10 @@ a:hover {
 }
 .price {
   color: rgb(55, 129, 55);
+}
+.text-centre {
+  display: flex;
+  justify-content: center;
 }
 footer {
   margin-bottom: 0, auto;
