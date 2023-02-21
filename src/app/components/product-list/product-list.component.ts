@@ -28,14 +28,7 @@ export class ProductListComponent implements OnInit {
     if (keyword) {
       this.getProductByKeyword(keyword);
     } else {
-      const isCategoryMode: boolean =
-        this.router.snapshot.paramMap.has('category');
-      if (isCategoryMode) {
-        const category = this.router.snapshot.paramMap.get('category')!;
-        this.getProductByCategory(category);
-      } else {
-        this.getAllProducts();
-      }
+      this.getProductByCategory;
     }
   }
   getProductByKeyword(keyword: string) {
@@ -43,14 +36,21 @@ export class ProductListComponent implements OnInit {
       this.productList = data._embedded.products;
     });
   }
-  getProductByCategory(category: string) {
-    if (this.currentCategory !== category) {
-      this.currentCategory = category;
-      this.page = 1;
+  getProductByCategory() {
+    const isCategoryMode: boolean =
+      this.router.snapshot.paramMap.has('category');
+    if (isCategoryMode) {
+      const category = this.router.snapshot.paramMap.get('category')!;
+      if (this.currentCategory !== category) {
+        this.currentCategory = category;
+        this.page = 1;
+      }
+      this.productService.getProductsByCategory(category).subscribe((data) => {
+        this.productList = data._embedded.products;
+      });
+    } else {
+      this.getAllProducts();
     }
-    this.productService.getProductsByCategory(category).subscribe((data) => {
-      this.productList = data._embedded.products;
-    });
   }
   getAllProducts() {
     this.productService.getAllProducts().subscribe((data) => {
