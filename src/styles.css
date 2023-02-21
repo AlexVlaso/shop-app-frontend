@@ -5,6 +5,12 @@ a {
 a:hover {
   color: orange;
 }
+ngb-pagination .page-item.active .page-link {
+  z-index: 3;
+  color: black;
+  background-color: rgb(243, 181, 24);
+  border-color: #fff;
+}
 .logo {
   border-radius: 15px;
   width: 50px;
@@ -12,9 +18,25 @@ a:hover {
   margin-right: 20px;
 }
 .nav-icon {
-  font-size: 25px;
+  font-size: 33px;
   margin-right: 10px;
 }
+.search-form {
+  display: flex;
+}
+
+.btn-search {
+  background-color: rgb(243, 181, 24);
+  border: none;
+  font-size: 23px;
+  border-radius: 10px;
+  margin-left: 3px;
+  margin-right: 10px;
+}
+.btn-search:hover {
+  background-color: rgb(252, 204, 83);
+}
+
 .navbar-shadow {
   box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
 }
@@ -40,6 +62,10 @@ a:hover {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+.active-link {
+  font-weight: bold;
+  color: orange;
+}
 .page-wrapper {
   overflow: hidden;
   background-color: rgb(229, 222, 206);
@@ -49,6 +75,7 @@ a:hover {
   min-height: 1000px;
   margin-left: 30px;
   margin-top: 30px;
+  margin-bottom: 30px;
   width: 75%;
 }
 .product-group a {
@@ -71,6 +98,10 @@ a:hover {
   width: 60%;
   margin-top: 10%;
 }
+.product-group-item p {
+  margin-left: 10%;
+  margin-right: 10%;
+}
 .container {
   display: flex;
   flex-wrap: wrap;
@@ -78,6 +109,10 @@ a:hover {
 }
 .price {
   color: rgb(55, 129, 55);
+}
+.text-centre {
+  display: flex;
+  justify-content: center;
 }
 footer {
   margin-bottom: 0, auto;

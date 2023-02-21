@@ -10,3 +10,11 @@
     <button class="btn btn-success">Add to cart</button>
   </div>
 </div>
+<div class="text-centre">
+  <ngb-pagination
+    [(page)]="currentPage"
+    [pageSize]="size"
+    [collectionSize]="totalElements"
+    (pageChange)="getListOfProduct()"
+  ></ngb-pagination>
+</div>
