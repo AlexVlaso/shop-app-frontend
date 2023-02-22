@@ -32,6 +32,7 @@ export class ProductListComponent implements OnInit {
     } else {
       this.getProductByCategory();
     }
+    window.scrollTo(0, 0);
   }
   getProductByKeyword(keyword: string) {
     this.productService
@@ -66,6 +67,7 @@ export class ProductListComponent implements OnInit {
       this.currentPage = data.page.number + 1;
       this.totalPages = data.page.totalPages;
       this.totalElements = data.page.totalElements;
+      console.log(this.productList);
     };
   }
 }

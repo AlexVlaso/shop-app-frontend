@@ -9,6 +9,7 @@ import { SearchComponent } from './components/search/search.component';
 import { CategoryComponent } from './components/category/category.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ProductListComponent,
     SearchComponent,
     CategoryComponent,
+    ProductDetailsComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgbModule],
   providers: [],
