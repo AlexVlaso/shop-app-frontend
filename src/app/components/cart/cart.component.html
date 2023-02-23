@@ -1,0 +1,45 @@
+<div class="product-details-block">
+  <table class="table" style="border-radius: 10px">
+    <thead>
+      <tr class="table-dark">
+        <th scope="col">#</th>
+        <th scope="col">Image</th>
+        <th scope="col">Product Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cartItem of cart; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>
+          <img class="table-image" src="{{ cartItem.product.imageUrl }}" />
+        </td>
+        <td>{{ cartItem.product.name }}</td>
+        <td>{{ cartItem.product.price | currency : "USD" }}</td>
+        <td>
+          <button
+            class="btn btn-warning"
+            (click)="onIncrementQuantity(cartItem)"
+          >
+            +
+          </button>
+          {{ cartItem.quantity }}
+          <button
+            class="btn btn-warning"
+            (click)="onDecrementQuantity(cartItem)"
+          >
+            -
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td>Total Price</td>
+        <td>0</td>
+      </tr>
+    </tbody>
+  </table>
+  <a class="btn btn-warning" routerLink="">
+    <i class="bx bx-left-arrow-alt"></i>Back to catalog
+  </a>
+</div>

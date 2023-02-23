@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CartItem } from 'src/app/model/cart-item';
 import { Product } from 'src/app/model/product';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
@@ -72,6 +73,7 @@ export class ProductListComponent implements OnInit {
     };
   }
   addProductToCart(product: Product) {
-    this.cartService.addProductToCart(product);
+    const cartItem = new CartItem(product);
+    this.cartService.addProductToCart(cartItem);
   }
 }

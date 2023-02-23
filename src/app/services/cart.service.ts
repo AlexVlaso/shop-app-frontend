@@ -10,16 +10,13 @@ export class CartService {
   selectedProduct: CartItem[] = [];
   constructor() {}
 
-  addProductToCart(product: Product) {
-    this.addProductToList(product, this.cart);
-    console.log(this.cart);
+  addProductToCart(cartItem: CartItem) {
+    this.addProductToList(cartItem, this.cart);
   }
-  addProductToSelected(product: Product) {
-    this.addProductToList(product, this.selectedProduct);
-    console.log(this.selectedProduct);
+  addProductToSelected(cartItem: CartItem) {
+    this.addProductToList(cartItem, this.selectedProduct);
   }
-  private addProductToList(product: Product, list: CartItem[]) {
-    const curCartItem = new CartItem(product);
+  private addProductToList(curCartItem: CartItem, list: CartItem[]) {
     const existingCartItem = list.find(
       (tempCartItem) => tempCartItem.product.id === curCartItem.product.id
     );
@@ -27,6 +24,18 @@ export class CartService {
       existingCartItem.quantity += 1;
     } else {
       list.push(curCartItem);
+    }
+  }
+  removeProductFromCart(cartItem: CartItem) {
+    cartItem.quantity--;
+    if (cartItem.quantity === 0) {
+      this.remove(cartItem, this.cart);
+    }
+  }
+  remove(cartItem: CartItem, list: CartItem[]) {
+    const index = list.indexOf(cartItem);
+    if (index !== -1) {
+      list.splice(index, 1);
     }
   }
 }
