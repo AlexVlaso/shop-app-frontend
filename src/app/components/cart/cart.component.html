@@ -1,5 +1,5 @@
 <div class="product-details-block">
-  <table class="table" style="border-radius: 10px">
+  <table class="table" style="border-radius: 10px" *ngIf="cart.length > 0">
     <thead>
       <tr class="table-dark">
         <th scope="col">#</th>
@@ -34,8 +34,16 @@
         </td>
       </tr>
       <tr>
-        <td>Total Price</td>
-        <td>0</td>
+        <td colspan="4"></td>
+        <td style="font-weight: bold">
+          <p>
+            Total price:
+            <span class="price"> {{ totalPrice | currency : "USD" }}</span>
+          </p>
+          <p>
+            Total quantity:<span class="price"> {{ totalQuantity }}</span>
+          </p>
+        </td>
       </tr>
     </tbody>
   </table>

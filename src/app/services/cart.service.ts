@@ -27,12 +27,14 @@ export class CartService {
     } else {
       list.push(curCartItem);
     }
+    this.computeTotals();
   }
   removeProductFromCart(cartItem: CartItem) {
     cartItem.quantity--;
     if (cartItem.quantity === 0) {
       this.remove(cartItem, this.cart);
     }
+    this.computeTotals();
   }
   remove(cartItem: CartItem, list: CartItem[]) {
     const index = list.indexOf(cartItem);
