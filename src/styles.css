@@ -113,6 +113,7 @@ ngb-pagination .page-item.active .page-link {
 }
 .right-side-container {
   position: relative;
+  margin-left: 20px;
 }
 .right-side-bottom {
   position: absolute;
