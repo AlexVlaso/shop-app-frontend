@@ -12,9 +12,11 @@ export class CartService {
 
   addProductToCart(product: Product) {
     this.addProductToList(product, this.cart);
+    console.log(this.cart);
   }
   addProductToSelected(product: Product) {
     this.addProductToList(product, this.selectedProduct);
+    console.log(this.selectedProduct);
   }
   private addProductToList(product: Product, list: CartItem[]) {
     const curCartItem = new CartItem(product);
