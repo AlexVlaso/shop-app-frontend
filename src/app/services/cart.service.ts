@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { CartItem } from '../model/cart-item';
-import { Product } from '../model/product';
 
 @Injectable({
   providedIn: 'root',
@@ -8,6 +8,8 @@ import { Product } from '../model/product';
 export class CartService {
   cart: CartItem[] = [];
   selectedProduct: CartItem[] = [];
+  totalPrice = new BehaviorSubject<number>(0);
+  totalQuantity = new BehaviorSubject<number>(0);
   constructor() {}
 
   addProductToCart(cartItem: CartItem) {
@@ -37,5 +39,15 @@ export class CartService {
     if (index !== -1) {
       list.splice(index, 1);
     }
+  }
+  computeTotals() {
+    let totalPriceValue = 0;
+    let totalQuantityValue = 0;
+    for (let cartItem of this.cart) {
+      totalPriceValue += cartItem.product.price! * cartItem.quantity;
+      totalQuantityValue += cartItem.quantity;
+    }
+    this.totalPrice.next(totalPriceValue);
+    this.totalQuantity.next(totalQuantityValue);
   }
 }
