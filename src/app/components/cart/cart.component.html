@@ -53,4 +53,9 @@
   <a class="btn btn-warning" routerLink="">
     <i class="bx bx-left-arrow-alt"></i>Back to catalog
   </a>
+  <div *ngIf="cart.length === 0" class="info-message">
+    <p>
+      You don't have products in your cart yet <i class="bx bx-wink-smile"></i>
+    </p>
+  </div>
 </div>
