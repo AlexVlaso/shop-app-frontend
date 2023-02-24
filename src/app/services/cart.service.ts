@@ -7,7 +7,7 @@ import { CartItem } from '../model/cart-item';
 })
 export class CartService {
   cart: CartItem[] = [];
-  selectedProduct: CartItem[] = [];
+  selectedProducts: CartItem[] = [];
   totalPrice = new BehaviorSubject<number>(0);
   totalQuantity = new BehaviorSubject<number>(0);
   constructor() {}
@@ -16,7 +16,7 @@ export class CartService {
     this.addProductToList(cartItem, this.cart);
   }
   addProductToSelected(cartItem: CartItem) {
-    this.addProductToList(cartItem, this.selectedProduct);
+    this.addProductToList(cartItem, this.selectedProducts);
   }
   private addProductToList(curCartItem: CartItem, list: CartItem[]) {
     const existingCartItem = list.find(

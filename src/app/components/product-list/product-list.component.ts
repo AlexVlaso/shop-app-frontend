@@ -76,4 +76,8 @@ export class ProductListComponent implements OnInit {
     const cartItem = new CartItem(product);
     this.cartService.addProductToCart(cartItem);
   }
+  addProductToSelected(product: Product) {
+    const cartItem = new CartItem(product);
+    this.cartService.addProductToSelected(cartItem);
+  }
 }
