@@ -25,4 +25,8 @@ export class CartComponent implements OnInit {
   onDecrementQuantity(cartItem: CartItem) {
     this.cartService.removeProductFromCart(cartItem);
   }
+  onRemove(cartItem: CartItem) {
+    this.cartService.remove(cartItem, this.cart);
+    this.cartService.computeTotals();
+  }
 }

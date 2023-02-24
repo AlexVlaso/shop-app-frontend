@@ -144,6 +144,9 @@ ngb-pagination .page-item.active .page-link {
   height: 200px;
   width: 200px;
 }
+.ml-10px {
+  margin-left: 10px;
+}
 footer {
   margin-bottom: 0, auto;
   background-color: rgb(34, 37, 41);
