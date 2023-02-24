@@ -13,7 +13,17 @@ export class SelectedProductsComponent implements OnInit {
   ngOnInit(): void {
     this.selectedProducts = this.cartService.selectedProducts;
   }
-  info() {
-    console.log(this.selectedProducts);
+  onRemove(cartItem: CartItem) {
+    this.cartService.remove(cartItem, this.selectedProducts);
+  }
+  onInrementQuantity(cartItem: CartItem) {
+    this.cartService.addProductToSelected(cartItem);
+  }
+  onDecrementQuantity(cartItem: CartItem) {
+    this.cartService.removeProductFromSelected(cartItem);
+  }
+  onAddToCart(cartItem: CartItem) {
+    this.cartService.addProductToCart(cartItem);
+    this.cartService.remove(cartItem, this.selectedProducts);
   }
 }

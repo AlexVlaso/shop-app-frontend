@@ -30,17 +30,23 @@ export class CartService {
     this.computeTotals();
   }
   removeProductFromCart(cartItem: CartItem) {
+    this.removeProductFromList(cartItem, this.cart);
+  }
+  removeProductFromSelected(cartItem: CartItem) {
+    this.removeProductFromList(cartItem, this.selectedProducts);
+  }
+  private removeProductFromList(cartItem: CartItem, list: CartItem[]) {
     cartItem.quantity--;
     if (cartItem.quantity === 0) {
-      this.remove(cartItem, this.cart);
+      this.remove(cartItem, list);
     }
-    this.computeTotals();
   }
   remove(cartItem: CartItem, list: CartItem[]) {
     const index = list.indexOf(cartItem);
     if (index !== -1) {
       list.splice(index, 1);
     }
+    this.computeTotals();
   }
   computeTotals() {
     let totalPriceValue = 0;

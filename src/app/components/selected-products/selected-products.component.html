@@ -10,6 +10,7 @@
         <th scope="col">Image</th>
         <th scope="col">Product Name</th>
         <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
         <th scope="col">Actions</th>
       </tr>
     </thead>
@@ -22,10 +23,38 @@
         <td>{{ cartItem.product.name }}</td>
         <td>{{ cartItem.product.price | currency : "USD" }}</td>
         <td>
-          <button class="btn btn-success">Add to cart</button>
-          <button class="btn btn-danger ml-10px">Remove</button>
+          <button
+            class="btn btn-warning"
+            (click)="onInrementQuantity(cartItem)"
+          >
+            +
+          </button>
+          {{ cartItem.quantity }}
+          <button
+            class="btn btn-warning"
+            (click)="onDecrementQuantity(cartItem)"
+          >
+            -
+          </button>
+        </td>
+        <td>
+          <button class="btn btn-success" (click)="onAddToCart(cartItem)">
+            Add to cart
+          </button>
+          <button class="btn btn-danger ml-10px" (click)="onRemove(cartItem)">
+            Remove
+          </button>
         </td>
       </tr>
     </tbody>
   </table>
+  <a class="btn btn-warning" routerLink="">
+    <i class="bx bx-left-arrow-alt"></i>Back to catalog
+  </a>
+  <div *ngIf="selectedProducts.length === 0" class="info-message">
+    <p>
+      You don't have products in your selected list yet
+      <i class="bx bx-wink-smile"></i>
+    </p>
+  </div>
 </div>
