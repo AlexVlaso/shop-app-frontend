@@ -12,6 +12,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { CartComponent } from './components/cart/cart.component';
 import { SelectedProductsComponent } from './components/selected-products/selected-products.component';
+import { CheckoutFormComponent } from './components/checkout-form/checkout-form.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { SelectedProductsComponent } from './components/selected-products/select
     ProductDetailsComponent,
     CartComponent,
     SelectedProductsComponent,
+    CheckoutFormComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgbModule],
   providers: [],
