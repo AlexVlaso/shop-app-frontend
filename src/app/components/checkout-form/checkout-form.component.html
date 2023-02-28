@@ -1,1 +1,72 @@
-<p>checkout-form works!</p>
+<div class="product-details-block">
+  <form
+    [formGroup]="checkoutFormsGroup"
+    (ngSubmit)="onSubmit()"
+    class="main-form"
+  >
+    <div formGroupName="customer" class="form-area">
+      <h3>Customer</h3>
+      <div class="row input-space">
+        <div class="col-md-2"><label>First Name:</label></div>
+        <div class="col-md-9">
+          <input type="text" formControlName="firstName" />
+        </div>
+      </div>
+      <div class="row input-space">
+        <div class="col-md-2"><label>Last Name:</label></div>
+        <div class="col-md-9">
+          <input type="text" formControlName="lastName" />
+        </div>
+      </div>
+      <div class="row input-space">
+        <div class="col-md-2"><label>Email:</label></div>
+        <div class="col-md-9">
+          <input type="text" formControlName="email" />
+        </div>
+      </div>
+    </div>
+    <div formGroupName="shippingAddress" class="form-area">
+      <h3>Shipping Address</h3>
+      <div class="row input-space">
+        <div class="col-md-2"><label>Country</label></div>
+        <div class="col-md-9">
+          <select formControlName="country">
+            <option value="Ukraine">Ukraine</option>
+          </select>
+        </div>
+      </div>
+      <div class="row input-space">
+        <div class="col-md-2"><label>Region</label></div>
+        <div class="col-md-9">
+          <select formControlName="region">
+            <option value="Kharkiv">Kharkiv</option>
+          </select>
+        </div>
+      </div>
+      <div class="row input-space">
+        <div class="col-md-2"><label>City</label></div>
+        <div class="col-md-9">
+          <input type="text" formControlName="city" />
+        </div>
+      </div>
+      <div class="row input-space">
+        <div class="col-md-2"><label>Address</label></div>
+        <div class="col-md-9">
+          <input type="text" formControlName="address" />
+        </div>
+      </div>
+      <div class="row input-space">
+        <div class="col-md-2"><label>ZipCode</label></div>
+        <div class="col-md-9">
+          <input type="text" formControlName="zipCode" />
+        </div>
+      </div>
+    </div>
+    <div formGroupName="creditCard" class="form-area">
+      <h3>Credit Card</h3>
+    </div>
+    <div>
+      <button type="submit" class="btn btn-success">Submit</button>
+    </div>
+  </form>
+</div>
