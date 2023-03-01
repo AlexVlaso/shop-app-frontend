@@ -40,6 +40,15 @@ export class CheckoutFormComponent implements OnInit {
       this.countries = data._embedded.countries;
     });
   }
+  get firstName() {
+    return this.checkoutFormsGroup.get('customer.firstName');
+  }
+  get lastName() {
+    return this.checkoutFormsGroup.get('customer.lastName');
+  }
+  get email() {
+    return this.checkoutFormsGroup.get('customer.email');
+  }
   handleListOfStates() {
     const formGroup = this.checkoutFormsGroup.get('shippingAddress');
     const countryCode = formGroup?.value.country.code;
