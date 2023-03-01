@@ -11,17 +11,50 @@
         <div class="col-md-9">
           <input type="text" formControlName="firstName" />
         </div>
+        <div
+          *ngIf="firstName?.invalid && (firstName?.touched || firstName?.dirty)"
+          class="alert"
+        >
+          <div
+            *ngIf="firstName?.errors?.['required']||firstName?.errors?.['notOnlyWhiteSpace']"
+          >
+            First name is required
+          </div>
+          <div *ngIf="firstName?.errors?.['minlength']">
+            First name must be at least 2 characters
+          </div>
+        </div>
       </div>
       <div class="row input-space">
         <div class="col-md-2"><label>Last Name:</label></div>
         <div class="col-md-9">
           <input type="text" formControlName="lastName" />
         </div>
+        <div
+          *ngIf="lastName?.invalid && (lastName?.touched || lastName?.dirty)"
+          class="alert"
+        >
+          <div
+            *ngIf="lastName?.errors?.['required']||lastName?.errors?.['notOnlyWhiteSpace']"
+          >
+            Last name is required
+          </div>
+          <div *ngIf="lastName?.errors?.['minlength']">
+            Last name must be at least 2 characters
+          </div>
+        </div>
       </div>
       <div class="row input-space">
         <div class="col-md-2"><label>Email:</label></div>
         <div class="col-md-9">
           <input type="text" formControlName="email" />
+        </div>
+        <div
+          *ngIf="email?.invalid && (email?.touched || email?.dirty)"
+          class="alert"
+        >
+          <div *ngIf="email?.errors?.['required']">Email is required</div>
+          <div *ngIf="email?.errors?.['pattern']">Email must be correct</div>
         </div>
       </div>
     </div>
@@ -36,6 +69,9 @@
             </option>
           </select>
         </div>
+        <div *ngIf="country?.invalid && country?.touched" class="alert">
+          <div *ngIf="country?.errors?.['required']">Country is required</div>
+        </div>
       </div>
       <div class="row input-space">
         <div class="col-md-2"><label>Region</label></div>
@@ -46,11 +82,24 @@
             </option>
           </select>
         </div>
+        <div *ngIf="region?.invalid && region?.touched" class="alert">
+          <div *ngIf="region?.errors?.['required']">Region is required</div>
+        </div>
       </div>
       <div class="row input-space">
         <div class="col-md-2"><label>City</label></div>
         <div class="col-md-9">
           <input type="text" formControlName="city" />
+        </div>
+        <div
+          *ngIf="city?.invalid && (city?.touched || city?.dirty)"
+          class="alert"
+        >
+          <div
+            *ngIf="city?.errors?.['required']||city?.errors?.['notOnlyWhiteSpace']"
+          >
+            City is required
+          </div>
         </div>
       </div>
       <div class="row input-space">
@@ -58,11 +107,31 @@
         <div class="col-md-9">
           <input type="text" formControlName="address" />
         </div>
+        <div
+          *ngIf="address?.invalid && (address?.touched || address?.dirty)"
+          class="alert"
+        >
+          <div
+            *ngIf="address?.errors?.['required']||address?.errors?.['notOnlyWhiteSpace']"
+          >
+            Address is required
+          </div>
+        </div>
       </div>
       <div class="row input-space">
         <div class="col-md-2"><label>ZipCode</label></div>
         <div class="col-md-9">
           <input type="text" formControlName="zipCode" />
+        </div>
+        <div
+          *ngIf="zipCode?.invalid && (zipCode?.touched || zipCode?.dirty)"
+          class="alert"
+        >
+          <div
+            *ngIf="zipCode?.errors?.['required']||zipCode?.errors?.['notOnlyWhiteSpace']"
+          >
+            Zip code is required
+          </div>
         </div>
       </div>
     </div>

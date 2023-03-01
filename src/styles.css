@@ -201,6 +201,11 @@ ngb-pagination .page-item.active .page-link {
   padding: 0 10px;
   border: 1px solid #ccc;
 }
+.alert {
+  border-radius: 30px;
+  background-color: rgb(233, 98, 98);
+  color: #fff;
+}
 footer {
   margin-bottom: 0, auto;
   background-color: rgb(34, 37, 41);
