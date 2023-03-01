@@ -9,9 +9,13 @@ import { Observable } from 'rxjs';
 export class ProductService {
   private basicUrl = 'http://localhost:8080/api/products';
   constructor(private httpClient: HttpClient) {}
+
+  getProductById(id: string): Observable<Product> {
+    return this.httpClient.get<Product>(`${this.basicUrl}/${id}`);
+  }
   getAllProducts(count: number, page: number): Observable<ProductListResponse> {
     return this.httpClient.get<ProductListResponse>(
-      `${this.basicUrl}&size=${count}&page=${page}`
+      `${this.basicUrl}?size=${count}&page=${page}`
     );
   }
   getProductsByCategory(

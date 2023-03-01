@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CartItem } from 'src/app/model/cart-item';
 import { Product } from 'src/app/model/product';
+import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -17,7 +19,8 @@ export class ProductListComponent implements OnInit {
   currentCategory = '';
   constructor(
     private productService: ProductService,
-    private router: ActivatedRoute
+    private router: ActivatedRoute,
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
@@ -32,6 +35,7 @@ export class ProductListComponent implements OnInit {
     } else {
       this.getProductByCategory();
     }
+    window.scrollTo(0, 0);
   }
   getProductByKeyword(keyword: string) {
     this.productService
@@ -67,5 +71,13 @@ export class ProductListComponent implements OnInit {
       this.totalPages = data.page.totalPages;
       this.totalElements = data.page.totalElements;
     };
+  }
+  addProductToCart(product: Product) {
+    const cartItem = new CartItem(product);
+    this.cartService.addProductToCart(cartItem);
+  }
+  addProductToSelected(product: Product) {
+    const cartItem = new CartItem(product);
+    this.cartService.addProductToSelected(cartItem);
   }
 }

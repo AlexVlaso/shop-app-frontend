@@ -3,7 +3,7 @@ a {
   text-decoration: none;
 }
 a:hover {
-  color: orange;
+  color: rgb(243, 181, 24);
 }
 ngb-pagination .page-item.active .page-link {
   z-index: 3;
@@ -64,7 +64,7 @@ ngb-pagination .page-item.active .page-link {
 }
 .active-link {
   font-weight: bold;
-  color: orange;
+  color: rgb(243, 181, 24);
 }
 .page-wrapper {
   overflow: hidden;
@@ -102,6 +102,30 @@ ngb-pagination .page-item.active .page-link {
   margin-left: 10%;
   margin-right: 10%;
 }
+.product-details-block {
+  background-color: white;
+  border-radius: 20px;
+  padding: 25px 25px 25px 25px;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+  min-height: 600px;
+}
+.product-header {
+  display: flex;
+}
+.right-side-container {
+  position: relative;
+  margin-left: 20px;
+}
+.right-side-bottom {
+  position: absolute;
+  bottom: 0;
+}
+.right-side-bottom a {
+  font-size: 40px;
+}
+.right-side-bottom a:hover {
+  color: orange;
+}
 .container {
   display: flex;
   flex-wrap: wrap;
@@ -113,6 +137,74 @@ ngb-pagination .page-item.active .page-link {
 .text-centre {
   display: flex;
   justify-content: center;
+  margin-top: 20px;
+}
+.table-image {
+  border-radius: 20px;
+  height: 200px;
+  width: 200px;
+}
+.ml-10px {
+  margin-left: 10px;
+}
+.info-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+.info-message > p {
+  font-size: 20px;
+  font-weight: bold;
+}
+.main-form {
+  margin: 20px 20px 20px 20px;
+}
+.form-area {
+  position: relative;
+  margin-bottom: 45px;
+  padding: 50px 20px;
+  border: 3px solid #ccc;
+}
+.form-area h3 {
+  background-color: #fff;
+  position: absolute;
+  top: -26px;
+  left: 13px;
+  padding: 10px 20px;
+  font-weight: 500;
+  z-index: 23;
+  display: inline-block;
+}
+.input-space {
+  margin-bottom: 20px;
+}
+.input-space label {
+  font-weight: bold;
+  padding-left: 31px;
+  font-size: 14px;
+  margin-bottom: 50px;
+}
+.input-space input[type="text"] {
+  width: 100%;
+  height: 40px;
+  border-radius: 30px;
+  outline: 0;
+  padding: 15px;
+  border: 1px solid #ccc;
+}
+.input-space select {
+  width: 100%;
+  height: 40px;
+  border-radius: 30px;
+  outline: 0;
+  padding: 0 10px;
+  border: 1px solid #ccc;
+}
+.alert {
+  border-radius: 30px;
+  background-color: rgb(233, 98, 98);
+  color: #fff;
 }
 footer {
   margin-bottom: 0, auto;

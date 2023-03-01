@@ -1,0 +1,62 @@
+<div class="product-details-block">
+  <table class="table" style="border-radius: 10px" *ngIf="cart.length > 0">
+    <thead>
+      <tr class="table-dark">
+        <th scope="col">#</th>
+        <th scope="col">Image</th>
+        <th scope="col">Product Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cartItem of cart; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>
+          <img class="table-image" src="{{ cartItem.product.imageUrl }}" />
+        </td>
+        <td>{{ cartItem.product.name }}</td>
+        <td>{{ cartItem.product.price | currency : "USD" }}</td>
+        <td>
+          <button
+            class="btn btn-warning"
+            (click)="onIncrementQuantity(cartItem)"
+          >
+            +
+          </button>
+          {{ cartItem.quantity }}
+          <button
+            class="btn btn-warning"
+            (click)="onDecrementQuantity(cartItem)"
+          >
+            -
+          </button>
+          <button class="btn btn-danger ml-10px" (click)="onRemove(cartItem)">
+            Remove
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4"></td>
+        <td style="font-weight: bold">
+          <p>
+            Total price:
+            <span class="price"> {{ totalPrice | currency : "USD" }}</span>
+          </p>
+          <p>
+            Total quantity:<span class="price"> {{ totalQuantity }}</span>
+          </p>
+          <button class="btn btn-success" (click)="onBuyNow()">Buy Now</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <a class="btn btn-warning" routerLink="">
+    <i class="bx bx-left-arrow-alt"></i>Back to catalog
+  </a>
+  <div *ngIf="cart.length === 0" class="info-message">
+    <p>
+      You don't have products in your cart yet <i class="bx bx-wink-smile"></i>
+    </p>
+  </div>
+</div>

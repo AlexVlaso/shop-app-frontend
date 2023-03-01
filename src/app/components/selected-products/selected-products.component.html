@@ -1,0 +1,60 @@
+<div class="product-details-block">
+  <table
+    class="table"
+    style="border-radius: 10px"
+    *ngIf="selectedProducts.length > 0"
+  >
+    <thead>
+      <tr class="table-dark">
+        <th scope="col">#</th>
+        <th scope="col">Image</th>
+        <th scope="col">Product Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cartItem of selectedProducts; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>
+          <img class="table-image" src="{{ cartItem.product.imageUrl }}" />
+        </td>
+        <td>{{ cartItem.product.name }}</td>
+        <td>{{ cartItem.product.price | currency : "USD" }}</td>
+        <td>
+          <button
+            class="btn btn-warning"
+            (click)="onInrementQuantity(cartItem)"
+          >
+            +
+          </button>
+          {{ cartItem.quantity }}
+          <button
+            class="btn btn-warning"
+            (click)="onDecrementQuantity(cartItem)"
+          >
+            -
+          </button>
+        </td>
+        <td>
+          <button class="btn btn-success" (click)="onAddToCart(cartItem)">
+            Add to cart
+          </button>
+          <button class="btn btn-danger ml-10px" (click)="onRemove(cartItem)">
+            Remove
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <a class="btn btn-warning" routerLink="">
+    <i class="bx bx-left-arrow-alt"></i>Back to catalog
+  </a>
+  <div *ngIf="selectedProducts.length === 0" class="info-message">
+    <p>
+      You don't have products in your selected list yet
+      <i class="bx bx-wink-smile"></i>
+    </p>
+  </div>
+</div>
