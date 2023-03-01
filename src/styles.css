@@ -19,12 +19,22 @@ ngb-pagination .page-item.active .page-link {
 }
 .nav-icon {
   font-size: 33px;
-  margin-right: 10px;
+  margin-right: 15px;
+  position: relative;
 }
 .search-form {
   display: flex;
 }
-
+.cart-number {
+  position: absolute;
+  padding-left: 6px;
+  padding-right: 6px;
+  font-size: 15px;
+  border-radius: 40px;
+  background-color: brown;
+  top: -2px;
+  left: 20px;
+}
 .btn-search {
   background-color: rgb(243, 181, 24);
   border: none;

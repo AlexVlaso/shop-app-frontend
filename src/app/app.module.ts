@@ -14,6 +14,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { SelectedProductsComponent } from './components/selected-products/selected-products.component';
 import { CheckoutFormComponent } from './components/checkout-form/checkout-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CartComponent,
     SelectedProductsComponent,
     CheckoutFormComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,

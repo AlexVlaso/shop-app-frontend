@@ -8,8 +8,10 @@ import { CartItem } from '../model/cart-item';
 export class CartService {
   cart: CartItem[] = [];
   selectedProducts: CartItem[] = [];
-  totalPrice = new BehaviorSubject<number>(0);
-  totalQuantity = new BehaviorSubject<number>(0);
+  cartTotalPrice = new BehaviorSubject<number>(0);
+  cartTotalQuantity = new BehaviorSubject<number>(0);
+  selectedTotalQuantity = new BehaviorSubject<number>(0);
+  selectedTotalPrice = new BehaviorSubject<number>(0);
   constructor() {}
 
   addProductToCart(cartItem: CartItem) {
@@ -27,7 +29,7 @@ export class CartService {
     } else {
       list.push(curCartItem);
     }
-    this.computeTotals();
+    this.computeTotals(list);
   }
   removeProductFromCart(cartItem: CartItem) {
     this.removeProductFromList(cartItem, this.cart);
@@ -40,22 +42,29 @@ export class CartService {
     if (cartItem.quantity === 0) {
       this.remove(cartItem, list);
     }
+    this.computeTotals(list);
   }
   remove(cartItem: CartItem, list: CartItem[]) {
     const index = list.indexOf(cartItem);
     if (index !== -1) {
       list.splice(index, 1);
     }
-    this.computeTotals();
+    this.computeTotals(list);
   }
-  computeTotals() {
+  computeTotals(list: CartItem[]) {
     let totalPriceValue = 0;
     let totalQuantityValue = 0;
-    for (let cartItem of this.cart) {
+    for (let cartItem of list) {
       totalPriceValue += cartItem.product.price! * cartItem.quantity;
       totalQuantityValue += cartItem.quantity;
     }
-    this.totalPrice.next(totalPriceValue);
-    this.totalQuantity.next(totalQuantityValue);
+    if (list === this.cart) {
+      this.cartTotalPrice.next(totalPriceValue);
+      this.cartTotalQuantity.next(totalQuantityValue);
+    }
+    if (list === this.selectedProducts) {
+      this.selectedTotalQuantity.next(totalQuantityValue);
+      this.selectedTotalPrice.next(totalPriceValue);
+    }
   }
 }
