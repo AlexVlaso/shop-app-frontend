@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { State } from '@popperjs/core';
+
 import { Observable } from 'rxjs';
 import { Country } from '../model/country';
+import { State } from '../model/state';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +24,7 @@ export class CountryService {
 }
 interface countryResponse {
   _embedded: {
-    counties: Country[];
+    countries: Country[];
   };
 }
 interface stateResponse {

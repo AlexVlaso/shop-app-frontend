@@ -30,8 +30,10 @@
       <div class="row input-space">
         <div class="col-md-2"><label>Country</label></div>
         <div class="col-md-9">
-          <select formControlName="country">
-            <option value="Ukraine">Ukraine</option>
+          <select formControlName="country" (change)="handleListOfStates()">
+            <option *ngFor="let country of countries" [ngValue]="country">
+              {{ country.name }}
+            </option>
           </select>
         </div>
       </div>
@@ -39,7 +41,9 @@
         <div class="col-md-2"><label>Region</label></div>
         <div class="col-md-9">
           <select formControlName="region">
-            <option value="Kharkiv">Kharkiv</option>
+            <option *ngFor="let state of states" [ngValue]="state">
+              {{ state.name }}
+            </option>
           </select>
         </div>
       </div>

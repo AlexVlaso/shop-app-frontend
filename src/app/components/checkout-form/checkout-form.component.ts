@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { Country } from 'src/app/model/country';
+import { State } from 'src/app/model/state';
+import { CountryService } from 'src/app/services/country.service';
+
 @Component({
   selector: 'app-checkout-form',
   templateUrl: './checkout-form.component.html',
@@ -8,7 +12,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class CheckoutFormComponent implements OnInit {
   checkoutFormsGroup!: FormGroup;
-  constructor(private formBuilder: FormBuilder) {}
+  countries: Country[] = [];
+  states: State[] = [];
+  constructor(
+    private formBuilder: FormBuilder,
+    private countryService: CountryService
+  ) {}
   ngOnInit(): void {
     this.checkoutFormsGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
@@ -17,7 +26,7 @@ export class CheckoutFormComponent implements OnInit {
         email: [''],
       }),
       shippingAddress: this.formBuilder.group({
-        country: ['Ukraine'],
+        country: [''],
         region: [''],
         city: [''],
         address: [''],
@@ -26,6 +35,17 @@ export class CheckoutFormComponent implements OnInit {
       creditCard: this.formBuilder.group({
         card: [''],
       }),
+    });
+    this.countryService.getListOfCountries().subscribe((data) => {
+      this.countries = data._embedded.countries;
+    });
+  }
+  handleListOfStates() {
+    const formGroup = this.checkoutFormsGroup.get('shippingAddress');
+    const countryCode = formGroup?.value.country.code;
+    this.countryService.getListOfStates(countryCode).subscribe((data) => {
+      this.states = data._embedded.states;
+      formGroup?.get('region')?.setValue(this.states[0]);
     });
   }
   onSubmit() {
