@@ -7,25 +7,21 @@ import { CartItem } from '../model/cart-item';
 })
 export class CartService {
   cart: CartItem[] = [];
-  selectedProducts: CartItem[] = [];
+  selectedList: CartItem[] = [];
   storage: Storage = sessionStorage;
   cartTotalPrice = new BehaviorSubject<number>(0);
   cartTotalQuantity = new BehaviorSubject<number>(0);
   selectedTotalQuantity = new BehaviorSubject<number>(0);
   selectedTotalPrice = new BehaviorSubject<number>(0);
   constructor() {
-    const cartData = this.storage.getItem('cartItems');
-    if (cartData) {
-      this.cart = JSON.parse(cartData);
-      this.computeTotals(this.cart);
-    }
+    this.handleDataFromStorage();
   }
 
   addProductToCart(cartItem: CartItem) {
     this.addProductToList(cartItem, this.cart);
   }
   addProductToSelected(cartItem: CartItem) {
-    this.addProductToList(cartItem, this.selectedProducts);
+    this.addProductToList(cartItem, this.selectedList);
   }
   private addProductToList(curCartItem: CartItem, list: CartItem[]) {
     const existingCartItem = list.find(
@@ -42,7 +38,7 @@ export class CartService {
     this.removeProductFromList(cartItem, this.cart);
   }
   removeProductFromSelected(cartItem: CartItem) {
-    this.removeProductFromList(cartItem, this.selectedProducts);
+    this.removeProductFromList(cartItem, this.selectedList);
   }
   private removeProductFromList(cartItem: CartItem, list: CartItem[]) {
     cartItem.quantity--;
@@ -70,7 +66,7 @@ export class CartService {
       this.cartTotalQuantity.next(totalQuantityValue);
       this.persistCartData();
     }
-    if (list === this.selectedProducts) {
+    if (list === this.selectedList) {
       this.selectedTotalQuantity.next(totalQuantityValue);
       this.selectedTotalPrice.next(totalPriceValue);
       this.persistSelectedListData();
@@ -80,6 +76,18 @@ export class CartService {
     this.storage.setItem('cartItems', JSON.stringify(this.cart));
   }
   persistSelectedListData() {
-    this.storage.setItem('selectedlist', JSON.stringify(this.selectedProducts));
+    this.storage.setItem('selectedList', JSON.stringify(this.selectedList));
+  }
+  handleDataFromStorage() {
+    const cartData = this.storage.getItem('cartItems');
+    const selectedlistData = this.storage.getItem('selectedList');
+    if (cartData) {
+      this.cart = JSON.parse(cartData);
+      this.computeTotals(this.cart);
+    }
+    if (selectedlistData) {
+      this.selectedList = JSON.parse(selectedlistData);
+      this.computeTotals(this.selectedList);
+    }
   }
 }

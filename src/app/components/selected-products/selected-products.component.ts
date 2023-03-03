@@ -11,7 +11,7 @@ export class SelectedProductsComponent implements OnInit {
   selectedProducts: CartItem[] = [];
   constructor(private cartService: CartService) {}
   ngOnInit(): void {
-    this.selectedProducts = this.cartService.selectedProducts;
+    this.selectedProducts = this.cartService.selectedList;
   }
   onRemove(cartItem: CartItem) {
     this.cartService.remove(cartItem, this.selectedProducts);

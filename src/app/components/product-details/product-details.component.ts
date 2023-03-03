@@ -30,6 +30,6 @@ export class ProductDetailsComponent implements OnInit {
   addProductToSelected() {
     const cartItem = new CartItem(this.product);
     this.cartService.addProductToSelected(cartItem);
-    console.log(this.cartService.selectedProducts);
+    console.log(this.cartService.selectedList);
   }
 }
