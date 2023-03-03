@@ -8,11 +8,18 @@ import { CartItem } from '../model/cart-item';
 export class CartService {
   cart: CartItem[] = [];
   selectedProducts: CartItem[] = [];
+  storage: Storage = sessionStorage;
   cartTotalPrice = new BehaviorSubject<number>(0);
   cartTotalQuantity = new BehaviorSubject<number>(0);
   selectedTotalQuantity = new BehaviorSubject<number>(0);
   selectedTotalPrice = new BehaviorSubject<number>(0);
-  constructor() {}
+  constructor() {
+    const cartData = this.storage.getItem('cartItems');
+    if (cartData) {
+      this.cart = JSON.parse(cartData);
+      this.computeTotals(this.cart);
+    }
+  }
 
   addProductToCart(cartItem: CartItem) {
     this.addProductToList(cartItem, this.cart);
@@ -61,10 +68,18 @@ export class CartService {
     if (list === this.cart) {
       this.cartTotalPrice.next(totalPriceValue);
       this.cartTotalQuantity.next(totalQuantityValue);
+      this.persistCartData();
     }
     if (list === this.selectedProducts) {
       this.selectedTotalQuantity.next(totalQuantityValue);
       this.selectedTotalPrice.next(totalPriceValue);
+      this.persistSelectedListData();
     }
+  }
+  persistCartData() {
+    this.storage.setItem('cartItems', JSON.stringify(this.cart));
+  }
+  persistSelectedListData() {
+    this.storage.setItem('selectedlist', JSON.stringify(this.selectedProducts));
   }
 }
