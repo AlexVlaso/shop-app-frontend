@@ -15,6 +15,7 @@ import { SelectedProductsComponent } from './components/selected-products/select
 import { CheckoutFormComponent } from './components/checkout-form/checkout-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     SelectedProductsComponent,
     CheckoutFormComponent,
     NavbarComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
