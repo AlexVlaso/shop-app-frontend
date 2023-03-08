@@ -10,5 +10,9 @@ import { UserService } from 'src/app/services/user.service';
 export class UserPageComponent implements OnInit {
   orderHistory: OrderHistoryItem[] = [];
   constructor(private userService: UserService) {}
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.userService.getListOfOrders('').subscribe((data) => {
+      this.orderHistory = data.embedded.orders;
+    });
+  }
 }

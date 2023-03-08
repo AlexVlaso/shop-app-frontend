@@ -13,6 +13,8 @@ export class NavbarComponent implements OnInit {
   selectedTotal = 0;
   isAuthenticated = false;
   userName: string = '';
+  userEmail: string = '';
+  storage: Storage = sessionStorage;
   constructor(
     private cartService: CartService,
     private authService: OktaAuthStateService,
@@ -35,6 +37,9 @@ export class NavbarComponent implements OnInit {
       this.oktaAuth.getUser().then((res) => {
         this.userName = res.name as string;
         console.log(this.userName);
+      });
+      this.oktaAuth.getUser().then((res) => {
+        this.userEmail = res.email as string;
       });
     }
   }
