@@ -16,6 +16,10 @@ import { CheckoutFormComponent } from './components/checkout-form/checkout-form.
 import { ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
+import appConfig from './config/app-config';
+import OktaAuth from '@okta/okta-auth-js';
+import { OktaAuthModule, OKTA_CONFIG } from '@okta/okta-angular';
+const oktaAuth = new OktaAuth(appConfig.oidc);
 
 @NgModule({
   declarations: [
@@ -36,8 +40,9 @@ import { LoginComponent } from './components/login/login.component';
     HttpClientModule,
     NgbModule,
     ReactiveFormsModule,
+    OktaAuthModule,
   ],
-  providers: [],
+  providers: [{ provide: OKTA_CONFIG, useValue: { oktaAuth } }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

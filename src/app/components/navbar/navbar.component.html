@@ -37,8 +37,23 @@
     </a>
     <app-search></app-search>
     <div class="text-end">
-      <button type="button" class="btn btn-outline-light me-2">Login</button>
-      <button type="button" class="btn btn-warning">Sign-up</button>
+      <button
+        type="button"
+        class="btn btn-outline-light me-2"
+        routerLink="login"
+        *ngIf="!isAuthenticated"
+      >
+        Login
+      </button>
+      <button
+        type="button"
+        class="btn btn-warning"
+        (click)="logout()"
+        *ngIf="isAuthenticated"
+      >
+        Sign-up
+      </button>
+      <img src="" alt="" />
     </div>
   </div>
 </header>
