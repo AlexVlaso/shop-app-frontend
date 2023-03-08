@@ -6,11 +6,7 @@
       href="/"
       class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"
     >
-      <img
-        class="logo"
-        src="../assets/images/4f862a7e516c4bd9b17904592c6098cf.png"
-        alt="logo"
-      />
+      <img class="logo" src="../assets/images/logo.png" alt="logo" />
     </a>
 
     <ul
@@ -37,23 +33,31 @@
     </a>
     <app-search></app-search>
     <div class="text-end">
-      <button
-        type="button"
-        class="btn btn-outline-light me-2"
-        routerLink="login"
-        *ngIf="!isAuthenticated"
-      >
-        Login
-      </button>
-      <button
-        type="button"
-        class="btn btn-warning"
-        (click)="logout()"
-        *ngIf="isAuthenticated"
-      >
-        Sign-up
-      </button>
-      <img src="" alt="" />
+      <div *ngIf="!isAuthenticated">
+        <button
+          type="button"
+          class="btn btn-outline-light me-2"
+          routerLink="/login"
+        >
+          Login
+        </button>
+        <button type="button" class="btn btn-warning" routerLink="/login">
+          Sign-up
+        </button>
+      </div>
+      <div *ngIf="isAuthenticated">
+        <button type="button" class="btn btn-danger" (click)="logout()">
+          <i class="bx bx-log-out"></i>
+          Logout
+        </button>
+        <a routerLink="/user">
+          <img
+            src="assets/images/user-placeholder.jpeg"
+            alt="user"
+            class="user-logo"
+          />
+        </a>
+      </div>
     </div>
   </div>
 </header>

@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
   oktaSignIn: any;
   constructor(@Inject(OKTA_AUTH) private oktaAuth: OktaAuth) {
     this.oktaSignIn = new OktaSignIn({
-      logo: 'assets/images/4f862a7e516c4bd9b17904592c6098cf.png',
+      logo: 'assets/images/logo.png',
       colors: {
         brand: '#F3B518',
       },

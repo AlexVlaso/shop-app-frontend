@@ -22,13 +22,19 @@ ngb-pagination .page-item.active .page-link {
   margin-right: 15px;
   position: relative;
 }
+.user-logo {
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
+  margin-left: 10px;
+}
 .search-form {
   display: flex;
 }
 .cart-number {
   position: absolute;
-  padding-left: 6px;
-  padding-right: 6px;
+  padding-left: 7px;
+  padding-right: 7px;
   font-size: 15px;
   border-radius: 40px;
   background-color: brown;
@@ -112,7 +118,7 @@ ngb-pagination .page-item.active .page-link {
   margin-left: 10%;
   margin-right: 10%;
 }
-.product-details-block {
+.content-block {
   background-color: white;
   border-radius: 20px;
   padding: 25px 25px 25px 25px;
@@ -121,6 +127,10 @@ ngb-pagination .page-item.active .page-link {
 }
 .product-header {
   display: flex;
+}
+.product-header img {
+  min-height: 500px;
+  min-height: 500px;
 }
 .right-side-container {
   position: relative;

@@ -19,6 +19,7 @@ import { LoginComponent } from './components/login/login.component';
 import appConfig from './config/app-config';
 import OktaAuth from '@okta/okta-auth-js';
 import { OktaAuthModule, OKTA_CONFIG } from '@okta/okta-angular';
+import { UserPageComponent } from './components/user-page/user-page.component';
 const oktaAuth = new OktaAuth(appConfig.oidc);
 
 @NgModule({
@@ -33,6 +34,7 @@ const oktaAuth = new OktaAuth(appConfig.oidc);
     CheckoutFormComponent,
     NavbarComponent,
     LoginComponent,
+    UserPageComponent,
   ],
   imports: [
     BrowserModule,
