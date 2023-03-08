@@ -23,6 +23,7 @@ export class CheckoutFormComponent implements OnInit {
   checkoutFormsGroup!: FormGroup;
   countries: Country[] = [];
   states: State[] = [];
+  storage: Storage = sessionStorage;
   totalPrice = 0;
   totalQuantity = 0;
   constructor(
@@ -162,6 +163,7 @@ export class CheckoutFormComponent implements OnInit {
     this.cartService.cartTotalPrice.next(0);
     this.cartService.cartTotalQuantity.next(0);
     this.cartService.cart = [];
+    this.storage.setItem('cartItems', JSON.stringify(this.cartService.cart));
     this.checkoutFormsGroup.reset();
     this.router.navigateByUrl('/products');
   }

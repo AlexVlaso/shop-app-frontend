@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { OKTA_AUTH } from '@okta/okta-angular';
-import OktaAuth from '@okta/okta-auth-js';
-import { Customer } from 'src/app/model/customer';
+import { OrderHistoryItem } from 'src/app/model/order-history-item';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-user-page',
@@ -9,7 +8,7 @@ import { Customer } from 'src/app/model/customer';
   styleUrls: ['./user-page.component.css'],
 })
 export class UserPageComponent implements OnInit {
-  user?: Customer;
-  constructor() {}
+  orderHistory: OrderHistoryItem[] = [];
+  constructor(private userService: UserService) {}
   ngOnInit(): void {}
 }
