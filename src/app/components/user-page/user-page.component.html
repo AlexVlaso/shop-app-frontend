@@ -2,4 +2,33 @@
   <a class="btn btn-warning" routerLink="">
     <i class="bx bx-left-arrow-alt"></i>Back to catalog
   </a>
+  <table
+    class="table"
+    style="border-radius: 10px"
+    *ngIf="orderHistory.length > 0"
+  >
+    <thead>
+      <tr class="table-dark">
+        <th scope="col">#</th>
+        <th scope="col">Order Tracking number</th>
+        <th scope="col">Total Price</th>
+        <th scope="col">Date Quantity</th>
+        <th scope="col">Date created</th>
+        <th scope="col">Last update</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let orderItem of orderHistory; let i = index"
+        class="table-warning"
+      >
+        <td>{{ i + 1 }}</td>
+        <td>{{ orderItem.orderTrackingNumber }}</td>
+        <td>{{ orderItem.totalPrice }}</td>
+        <td>{{ orderItem.totalQuantity }}</td>
+        <td>{{ orderItem.dateCreated }}</td>
+        <td>{{ orderItem.dateUpdated }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>

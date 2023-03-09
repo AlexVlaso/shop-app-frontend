@@ -16,7 +16,7 @@ export class UserService {
 }
 
 interface OrdersResponse {
-  embedded: {
+  _embedded: {
     orders: OrderHistoryItem[];
   };
 }

@@ -29,17 +29,18 @@ export class NavbarComponent implements OnInit {
     );
     this.authService.authState$.subscribe((result) => {
       this.isAuthenticated = result.isAuthenticated!;
-      this.getUserDetails();
+      this.saveUserDetails();
     });
   }
-  getUserDetails() {
+  saveUserDetails() {
     if (this.isAuthenticated) {
       this.oktaAuth.getUser().then((res) => {
         this.userName = res.name as string;
-        console.log(this.userName);
+        this.storage.setItem('userName', this.userName);
       });
       this.oktaAuth.getUser().then((res) => {
         this.userEmail = res.email as string;
+        this.storage.setItem('userEmail', this.userEmail);
       });
     }
   }

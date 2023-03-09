@@ -9,10 +9,18 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserPageComponent implements OnInit {
   orderHistory: OrderHistoryItem[] = [];
-  constructor(private userService: UserService) {}
+  storage: Storage = sessionStorage;
+  userEmail: string;
+  userName: string;
+  constructor(private userService: UserService) {
+    this.userEmail = this.storage.getItem('userEmail')!;
+    this.userName = this.storage.getItem('userEmail')!;
+  }
   ngOnInit(): void {
-    this.userService.getListOfOrders('').subscribe((data) => {
-      this.orderHistory = data.embedded.orders;
+    console.log('User init Test');
+    this.userService.getListOfOrders('alex@gmail.com').subscribe((data) => {
+      this.orderHistory = data._embedded.orders;
+      console.log(this.orderHistory);
     });
   }
 }
