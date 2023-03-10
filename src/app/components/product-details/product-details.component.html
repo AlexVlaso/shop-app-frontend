@@ -1,33 +1,43 @@
 <div class="content-block">
-  <div class="product-header">
-    <img src="{{ product.imageUrl }}" alt="{{ product.name }}" />
-    <div class="right-side-container">
-      <h2>{{ product.name }}</h2>
-      <div class="right-side-bottom">
-        <h3 class="price">{{ product.price | currency : "USD" }}</h3>
-        <p *ngIf="product.active" style="color: green">
-          In stock <i class="bx bx-chevron-down-circle"></i>
-        </p>
-        <p *ngIf="!product.active" style="color: red">
-          Not available <i class="bx bx-x-circle"></i>
-        </p>
-        <p>
-          <button class="btn btn-warning" (click)="addProductToSelected()">
-            <i class="bx bx-bookmark-heart"></i>
+  <ngx-spinner
+    bdColor="rgba(51,51,51,1)"
+    size="medium"
+    color="#fff"
+    type="ball-scale-multiple"
+  >
+    <p style="font-size: 20px; color: white">Loading...</p>
+  </ngx-spinner>
+  <div *ngIf="product.name">
+    <div class="product-header">
+      <img src="{{ product.imageUrl }}" alt="{{ product.name }}" />
+      <div class="right-side-container">
+        <h2>{{ product.name }}</h2>
+        <div class="right-side-bottom">
+          <h3 class="price">{{ product.price | currency : "USD" }}</h3>
+          <p *ngIf="product.active" style="color: green">
+            In stock <i class="bx bx-chevron-down-circle"></i>
+          </p>
+          <p *ngIf="!product.active" style="color: red">
+            Not available <i class="bx bx-x-circle"></i>
+          </p>
+          <p>
+            <button class="btn btn-warning" (click)="addProductToSelected()">
+              <i class="bx bx-bookmark-heart"></i>
+            </button>
+          </p>
+          <button class="btn btn-success" (click)="addProductToCart()">
+            Add to Cart
           </button>
-        </p>
-        <button class="btn btn-success" (click)="addProductToCart()">
-          Add to Cart
-        </button>
+        </div>
       </div>
     </div>
-  </div>
-  <div>
-    <hr />
-    <p>{{ product.description }}</p>
-    <hr />
-    <a class="btn btn-warning" routerLink="">
-      <i class="bx bx-left-arrow-alt"></i>Back to catalog
-    </a>
+    <div>
+      <hr />
+      <p>{{ product.description }}</p>
+      <hr />
+      <a class="btn btn-warning" routerLink="">
+        <i class="bx bx-left-arrow-alt"></i>Back to catalog
+      </a>
+    </div>
   </div>
 </div>

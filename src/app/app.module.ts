@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -20,6 +20,8 @@ import appConfig from './config/app-config';
 import OktaAuth from '@okta/okta-auth-js';
 import { OktaAuthModule, OKTA_CONFIG } from '@okta/okta-angular';
 import { UserPageComponent } from './components/user-page/user-page.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 const oktaAuth = new OktaAuth(appConfig.oidc);
 
 @NgModule({
@@ -43,8 +45,11 @@ const oktaAuth = new OktaAuth(appConfig.oidc);
     NgbModule,
     ReactiveFormsModule,
     OktaAuthModule,
+    BrowserAnimationsModule,
+    NgxSpinnerModule,
   ],
   providers: [{ provide: OKTA_CONFIG, useValue: { oktaAuth } }],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

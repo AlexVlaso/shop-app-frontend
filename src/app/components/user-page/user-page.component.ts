@@ -1,4 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { OrderHistoryItem } from 'src/app/model/order-history-item';
 import { UserService } from 'src/app/services/user.service';
 
@@ -12,13 +13,18 @@ export class UserPageComponent implements OnInit {
   storage: Storage = sessionStorage;
   userEmail: string;
   userName: string;
-  constructor(private userService: UserService) {
+  constructor(
+    private userService: UserService,
+    private spinner: NgxSpinnerService
+  ) {
     this.userEmail = this.storage.getItem('userEmail')!;
     this.userName = this.storage.getItem('userName')!;
   }
   ngOnInit(): void {
+    this.spinner.show();
     this.userService.getListOfOrders(this.userEmail).subscribe((data) => {
       this.orderHistory = data._embedded.orders;
+      this.spinner.hide();
     });
   }
 }

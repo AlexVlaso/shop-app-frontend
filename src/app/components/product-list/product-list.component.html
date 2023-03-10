@@ -1,4 +1,12 @@
 <div class="container">
+  <ngx-spinner
+    bdColor="rgba(51,51,51,1)"
+    size="medium"
+    color="#fff"
+    type="ball-scale-multiple"
+  >
+    <p style="font-size: 20px; color: white">Loading...</p>
+  </ngx-spinner>
   <div class="product-group-item" *ngFor="let product of productList">
     <a routerLink="/products/{{ product.id }}">
       <img src="{{ product.imageUrl }}" alt="{{ product.name }}" />
