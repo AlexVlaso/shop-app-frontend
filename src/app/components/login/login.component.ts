@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit {
       baseUrl: appConfig.oidc.issuer.split('/oauth2')[0],
       clientId: appConfig.oidc.clientId,
       redirectUri: appConfig.oidc.redirectUri,
-      useClassicEngine: true,
       authParams: {
         pkce: true,
         issuer: appConfig.oidc.issuer,

@@ -22,10 +22,11 @@
     "lib": ["ES2022", "dom"]
   },
   "angularCompilerOptions": {
-    "allowSyntheticDefaultImports": true,
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true
+    "strictTemplates": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
   }
 }

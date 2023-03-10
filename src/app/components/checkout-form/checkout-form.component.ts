@@ -34,10 +34,13 @@ export class CheckoutFormComponent implements OnInit {
     private cartService: CartService
   ) {}
   ngOnInit(): void {
+    const email = this.storage.getItem('userEmail');
+    const firstName = this.storage.getItem('userName')?.split(' ')[0];
+    const lastName = this.storage.getItem('userName')?.split(' ')[1];
     this.checkoutFormsGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
         firstName: [
-          '',
+          firstName,
           [
             Validators.required,
             Validators.minLength(2),
@@ -45,7 +48,7 @@ export class CheckoutFormComponent implements OnInit {
           ],
         ],
         lastName: [
-          '',
+          lastName,
           [
             Validators.required,
             Validators.minLength(2),
@@ -53,7 +56,7 @@ export class CheckoutFormComponent implements OnInit {
           ],
         ],
         email: [
-          '',
+          email,
           [
             Validators.required,
             Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),

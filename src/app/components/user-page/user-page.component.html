@@ -2,6 +2,12 @@
   <a class="btn btn-warning" routerLink="">
     <i class="bx bx-left-arrow-alt"></i>Back to catalog
   </a>
+  <div class="user-info-block">
+    <h3>
+      User: <span style="color: orange">{{ userName }}</span>
+    </h3>
+    <h3>Your orders:</h3>
+  </div>
   <table
     class="table"
     style="border-radius: 10px"
@@ -12,7 +18,7 @@
         <th scope="col">#</th>
         <th scope="col">Order Tracking number</th>
         <th scope="col">Total Price</th>
-        <th scope="col">Date Quantity</th>
+        <th scope="col">Total Quantity</th>
         <th scope="col">Date created</th>
         <th scope="col">Last update</th>
       </tr>
@@ -31,4 +37,8 @@
       </tr>
     </tbody>
   </table>
+
+  <div *ngIf="orderHistory.length === 0" class="info-message">
+    <p>You don't have previous orders yet <i class="bx bx-wink-smile"></i></p>
+  </div>
 </div>

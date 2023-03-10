@@ -46,5 +46,6 @@ export class NavbarComponent implements OnInit {
   }
   logout() {
     this.oktaAuth.signOut();
+    this.storage.clear();
   }
 }

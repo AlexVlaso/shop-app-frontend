@@ -14,13 +14,11 @@ export class UserPageComponent implements OnInit {
   userName: string;
   constructor(private userService: UserService) {
     this.userEmail = this.storage.getItem('userEmail')!;
-    this.userName = this.storage.getItem('userEmail')!;
+    this.userName = this.storage.getItem('userName')!;
   }
   ngOnInit(): void {
-    console.log('User init Test');
-    this.userService.getListOfOrders('alex@gmail.com').subscribe((data) => {
+    this.userService.getListOfOrders(this.userEmail).subscribe((data) => {
       this.orderHistory = data._embedded.orders;
-      console.log(this.orderHistory);
     });
   }
 }
