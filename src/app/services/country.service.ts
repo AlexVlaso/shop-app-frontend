@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Country } from '../model/country';
 import { State } from '../model/state';
 
@@ -9,8 +10,8 @@ import { State } from '../model/state';
   providedIn: 'root',
 })
 export class CountryService {
-  countriesUrl = 'http://localhost:8080/api/countries';
-  statesUrl = 'http://localhost:8080/api/states';
+  countriesUrl = environment.shopApiUrl + '/countries';
+  statesUrl = environment.shopApiUrl + '/states';
   constructor(private httpClient: HttpClient) {}
 
   getListOfCountries(): Observable<countryResponse> {
