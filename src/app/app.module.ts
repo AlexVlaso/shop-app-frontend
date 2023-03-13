@@ -22,6 +22,8 @@ import { OktaAuthModule, OKTA_CONFIG } from '@okta/okta-angular';
 import { UserPageComponent } from './components/user-page/user-page.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FeaturesComponent } from './components/features/features.component';
+import { AboutComponent } from './components/about/about.component';
 const oktaAuth = new OktaAuth(appConfig.oidc);
 
 @NgModule({
@@ -37,6 +39,8 @@ const oktaAuth = new OktaAuth(appConfig.oidc);
     NavbarComponent,
     LoginComponent,
     UserPageComponent,
+    FeaturesComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
