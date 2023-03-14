@@ -20,6 +20,7 @@ export class ProductDetailsComponent implements OnInit {
     private spinner: NgxSpinnerService
   ) {}
   ngOnInit(): void {
+    window.scrollTo(0, 0);
     this.spinner.show();
     const id = this.router.snapshot.paramMap.get('id')!;
     this.productService.getProductById(id).subscribe((data) => {
