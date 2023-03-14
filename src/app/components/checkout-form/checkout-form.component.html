@@ -1,4 +1,4 @@
-<div class="product-details-block">
+<div class="content-block">
   <form
     [formGroup]="checkoutFormsGroup"
     (ngSubmit)="onSubmit()"
@@ -137,6 +137,21 @@
     </div>
     <div formGroupName="creditCard" class="form-area">
       <h3>Credit Card</h3>
+      <div id="card-element"></div>
+      <div
+        id="card-errors"
+        [ngClass]="{
+          alert: displayError.textContent?.length > 0
+        }"
+      ></div>
+    </div>
+    <div class="form-area">
+      <h3>Totals</h3>
+      <p>Total quantity: {{ totalQuantity }}</p>
+      <p>
+        Total price:
+        <span class="price">{{ totalPrice | currency : "USD" }}</span>
+      </p>
     </div>
     <div>
       <button type="submit" class="btn btn-success">Submit</button>

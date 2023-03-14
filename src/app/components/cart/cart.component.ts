@@ -15,8 +15,10 @@ export class CartComponent implements OnInit {
   constructor(private cartService: CartService, private router: Router) {}
   ngOnInit(): void {
     this.cart = this.cartService.cart;
-    this.cartService.totalPrice.subscribe((data) => (this.totalPrice = data));
-    this.cartService.totalQuantity.subscribe(
+    this.cartService.cartTotalPrice.subscribe(
+      (data) => (this.totalPrice = data)
+    );
+    this.cartService.cartTotalQuantity.subscribe(
       (data) => (this.totalQuantity = data)
     );
   }
@@ -28,7 +30,7 @@ export class CartComponent implements OnInit {
   }
   onRemove(cartItem: CartItem) {
     this.cartService.remove(cartItem, this.cart);
-    this.cartService.computeTotals();
+    this.cartService.computeTotals(this.cart);
   }
   onBuyNow() {
     this.router.navigateByUrl('/checkout');

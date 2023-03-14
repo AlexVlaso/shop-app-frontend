@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { CartItem } from 'src/app/model/cart-item';
 import { Product } from 'src/app/model/product';
 import { CartService } from 'src/app/services/cart.service';
@@ -20,7 +21,8 @@ export class ProductListComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private router: ActivatedRoute,
-    private cartService: CartService
+    private cartService: CartService,
+    private spinner: NgxSpinnerService
   ) {}
 
   ngOnInit(): void {
@@ -38,6 +40,7 @@ export class ProductListComponent implements OnInit {
     window.scrollTo(0, 0);
   }
   getProductByKeyword(keyword: string) {
+    this.spinner.show();
     this.productService
       .getProductsByKeyword(keyword, this.size, this.currentPage - 1)
       .subscribe(this.processData());
@@ -51,6 +54,7 @@ export class ProductListComponent implements OnInit {
         this.currentCategory = category;
         this.currentPage = 1;
       }
+      this.spinner.show();
       this.productService
         .getProductsByCategory(category, this.size, this.currentPage - 1)
         .subscribe(this.processData());
@@ -59,6 +63,7 @@ export class ProductListComponent implements OnInit {
     }
   }
   getAllProducts() {
+    this.spinner.show();
     this.productService
       .getAllProducts(this.size, this.currentPage - 1)
       .subscribe(this.processData());
@@ -70,6 +75,7 @@ export class ProductListComponent implements OnInit {
       this.currentPage = data.page.number + 1;
       this.totalPages = data.page.totalPages;
       this.totalElements = data.page.totalElements;
+      this.spinner.hide();
     };
   }
   addProductToCart(product: Product) {
