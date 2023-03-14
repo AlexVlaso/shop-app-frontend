@@ -270,6 +270,26 @@ ngb-pagination .page-item.active .page-link {
 .text-muted {
   font-weight: bold;
 }
+.feature-list {
+  font-size: 25px;
+  color: brown;
+  font-weight: bold;
+}
+.feature-list li {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.feature-list img {
+  height: 300px;
+  width: 300px;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+}
+.shadow-mr5 {
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+  margin-right: 5px;
+}
 footer {
   margin-bottom: 0, auto;
   background-color: rgb(34, 37, 41);
