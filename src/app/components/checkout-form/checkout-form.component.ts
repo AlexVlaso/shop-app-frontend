@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Address } from 'src/app/model/address';
 
 import { Country } from 'src/app/model/country';
 import { Customer } from 'src/app/model/customer';
 import { Order } from 'src/app/model/order';
 import { OrderItem } from 'src/app/model/orderItem';
+import { PaymentInfo } from 'src/app/model/payment-info';
 import { Purchase } from 'src/app/model/purchase';
 import { State } from 'src/app/model/state';
 import { CartService } from 'src/app/services/cart.service';
 import { CheckoutService } from 'src/app/services/checkout.service';
 import { CountryService } from 'src/app/services/country.service';
 import { ShopValidator } from 'src/app/validators/shopValidator';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-checkout-form',
@@ -26,6 +27,10 @@ export class CheckoutFormComponent implements OnInit {
   storage: Storage = sessionStorage;
   totalPrice = 0;
   totalQuantity = 0;
+  stripe = Stripe(environment.stripePublishableKey);
+  paymentInfo: PaymentInfo = new PaymentInfo();
+  cardElement: any = '';
+  displayError: any = '';
   constructor(
     private formBuilder: FormBuilder,
     private countryService: CountryService,
@@ -34,6 +39,7 @@ export class CheckoutFormComponent implements OnInit {
     private cartService: CartService
   ) {}
   ngOnInit(): void {
+    this.setupStripeForm();
     const email = this.storage.getItem('userEmail');
     const firstName = this.storage.getItem('userName')?.split(' ')[0];
     const lastName = this.storage.getItem('userName')?.split(' ')[1];
@@ -83,6 +89,20 @@ export class CheckoutFormComponent implements OnInit {
     this.cartService.cartTotalQuantity.subscribe(
       (data) => (this.totalQuantity = data)
     );
+  }
+  setupStripeForm() {
+    var elements = this.stripe.elements();
+    this.cardElement = elements.create('card', { hidePostalCode: true });
+    this.cardElement.mount('#card-element');
+    this.cardElement.on('change', (event: any) => {
+      this.displayError = document.getElementById('card-errors');
+      if (event.complete) {
+        this.displayError.textContent = '';
+      }
+      if (event.error) {
+        this.displayError.textContent = event.error.message;
+      }
+    });
   }
   get firstName() {
     return this.checkoutFormsGroup.get('customer.firstName');
@@ -149,18 +169,46 @@ export class CheckoutFormComponent implements OnInit {
       order,
       orderItems
     );
-
-    this.checkoutService.placeOrder(purchase).subscribe({
-      next: (response) => {
-        alert(
-          `Your order is ready. Yor tracking number is ${response.orderTrackingNumber}`
-        );
-        this.resetCart();
-      },
-      error: (err) => {
-        alert(`Some problems, please try again. Problem is ${err.message}`);
-      },
-    });
+    this.paymentInfo.amount = this.totalPrice * 100;
+    this.paymentInfo.currency = 'USD';
+    if (
+      !this.checkoutFormsGroup.invalid &&
+      this.displayError.textContent === ''
+    ) {
+      this.checkoutService
+        .createPaymentIntent(this.paymentInfo)
+        .subscribe((paymentIntentResponse) => {
+          this.stripe
+            .confirmCardPayment(
+              paymentIntentResponse.client_secret,
+              {
+                payment_method: {
+                  card: this.cardElement,
+                },
+              },
+              { handleActions: false }
+            )
+            .then((result: any) => {
+              if (result.error) {
+                alert('Error:' + result.error.message);
+              } else {
+                this.checkoutService.placeOrder(purchase).subscribe({
+                  next: (response) => {
+                    alert(
+                      `Your order is ready. Yor tracking number is ${response.orderTrackingNumber}`
+                    );
+                    this.resetCart();
+                  },
+                  error: (err) => {
+                    alert(
+                      `Some problems, please try again. Problem is ${err.message}`
+                    );
+                  },
+                });
+              }
+            });
+        });
+    }
   }
   resetCart() {
     this.cartService.cartTotalPrice.next(0);

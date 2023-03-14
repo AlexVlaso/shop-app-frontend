@@ -137,6 +137,13 @@
     </div>
     <div formGroupName="creditCard" class="form-area">
       <h3>Credit Card</h3>
+      <div id="card-element"></div>
+      <div
+        id="card-errors"
+        [ngClass]="{
+          alert: displayError.textContent.length > 0
+        }"
+      ></div>
     </div>
     <div class="form-area">
       <h3>Totals</h3>
