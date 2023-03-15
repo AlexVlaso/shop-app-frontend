@@ -1,5 +1,5 @@
 export const environment = {
-  production: true,
+  production: false,
   shopApiUrl:
     'http://projectshop-env.eba-jiutxxep.us-east-1.elasticbeanstalk.com/api',
   stripePublishableKey:
